@@ -15,7 +15,7 @@ import  io.altar.pharmaFriend.Dtos.PharmacyDto;
 import  io.altar.pharmaFriend.business.UserRequestBusiness;
 
 @Component
-@Path("request")
+@Path("api/request")
 public class UserRequestService {
 	
 	@Inject 

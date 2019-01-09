@@ -21,7 +21,7 @@ import  io.altar.pharmaFriend.business.MedicineBusiness;
 import  io.altar.pharmaFriend.models.Medicine;
 
 @Component
-@Path("medicines")
+@Path("api/medicines")
 public class MedicineService {
 	
 	@Inject
