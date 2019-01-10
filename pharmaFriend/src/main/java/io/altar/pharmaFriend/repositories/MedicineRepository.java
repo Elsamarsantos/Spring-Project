@@ -50,10 +50,6 @@ public class MedicineRepository extends EntityRepository<Medicine>{
 		
 	}
 	
-	public void remove(String name,String dose, String volumeUnit) {
-		 em.remove(getMedicineByNameDoseUnit(name,dose,volumeUnit));
-		
-	}
 
 	public long getBiggestId() {
 		

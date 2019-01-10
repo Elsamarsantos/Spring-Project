@@ -4,13 +4,16 @@ package  io.altar.pharmaFriend.models;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 @Entity
+@Table(name= "Pharmacy")
 @NamedQueries({@NamedQuery(name=Pharmacy.QUERYLOCATION, query="SELECT p From Pharmacy p WHERE p.lonLocation= :lonLocation and p.latLocation= :latLocation"),
 				@NamedQuery(name=Pharmacy.QUERY_ALL, query="SELECT p From Pharmacy p"), 
 				@NamedQuery(name=Pharmacy.QUERYNAME, query="SELECT p From Pharmacy p WHERE p.pharmacyName= :pharmacyName"),
@@ -26,10 +29,17 @@ public class Pharmacy extends BaseEntity{
 	public static final String QUERYLOCATION = "findByLocation";
 	public static final String QUERY_ALL = "findAllPharmacy";	
 	public static final String QUERY_BIGGEST_F = "getBiggestId";
-			
+	
+	@Column(name="pharmacyName")
 	private String pharmacyName;
+	
+	@Column(name="address")
 	private String address;
+	
+	@Column(name="lonLocation")
 	private double lonLocation;
+	
+	@Column(name="latLocation")
 	private double latLocation;
 	
 	@ManyToMany(mappedBy = "listPharmacyInMedicine",fetch = FetchType.EAGER)

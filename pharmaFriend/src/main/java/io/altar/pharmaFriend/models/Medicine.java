@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
+@Table(name="Medicine")
 @NamedQueries({@NamedQuery(name=Medicine.QUERYNAME, query="SELECT m From Medicine m WHERE m.medicineName= :medicineName"),
 				@NamedQuery(name=Medicine.QUERY_NAME_DOSE_UNIT, query="SELECT m From Medicine m WHERE m.medicineName= :medicineName and m.dose= :dose and m.volumeUnit= :volumeUnit"),
 				@NamedQuery(name=Medicine.QUERY_ALL, query="SELECT m From Medicine m"),
@@ -23,11 +24,20 @@ public class Medicine extends BaseEntity {
 	
 	
 	public static final String QUERY_ALL = "findAllMedicines";		
-			
+	
+	@Column(name="`medicineName`")
 	private String medicineName;
+	
+	@Column(name="dose")
 	private String dose;
+	
+	@Column(name="`volumeUnit`")
 	private String volumeUnit;
+	
+	@Column(name="pvp")
 	private double pvp;
+	
+	@Column(name="`reImbursementRate`")
 	private String reImbursementRate;
 	
 	
@@ -40,7 +50,7 @@ public class Medicine extends BaseEntity {
 	
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "pharmacy_medicine",
+	@JoinTable(name = "Stock_in_pharmacy",
     joinColumns = @JoinColumn(name = "medicine_id"),
     inverseJoinColumns = @JoinColumn(name = "pharmacy_id")
 )

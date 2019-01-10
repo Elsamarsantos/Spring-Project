@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 import io.altar.pharmaFriend.Dtos.MedicineDto;
 import io.altar.pharmaFriend.models.Medicine;
-import io.altar.pharmaFriend.models.StockInPharmacy;
 import io.altar.pharmaFriend.repositories.MedicineRepository;
 
 @Component
@@ -20,9 +19,6 @@ public class MedicineBusiness {
 	
 	@Inject
 	MedicineRepository medicineRepository1;
-	
-	@Inject
-	StockInPharmacy stockInPharmacy1;
 	
 	
 	//create new medicine
@@ -97,20 +93,15 @@ public class MedicineBusiness {
 	}
 	
 	
-	//remove medicine by name 
-	@Transactional 
-	public void removeMedicine(String name,String dose, String volumeUnit) {
-		medicineRepository1.remove(name,dose,volumeUnit);
-	}
+	
 	
 	//remove medicine by id 
 		@Transactional 
 		public void removeMedicineById(long id) {
 			Medicine medicineToRemove= medicineRepository1.consultEntityId(id);
 			
-			medicineRepository1.remove(medicineToRemove.getMedicineName(),medicineToRemove.getDose(),medicineToRemove.getVolumeUnit());
+			medicineRepository1.delete(medicineToRemove);
 		}
-	
 	
 	@Transactional 
 	public void updateMedicine(Medicine medicine) {

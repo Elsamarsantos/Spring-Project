@@ -3,6 +3,7 @@ package  io.altar.pharmaFriend.business;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -12,9 +13,7 @@ import org.springframework.stereotype.Component;
 import  io.altar.pharmaFriend.Dtos.MedicineDto;
 import  io.altar.pharmaFriend.Dtos.PharmacyDto;
 import  io.altar.pharmaFriend.models.Medicine;
-import  io.altar.pharmaFriend.models.NearLocation;
 import  io.altar.pharmaFriend.models.Pharmacy;
-import  io.altar.pharmaFriend.models.StockInPharmacy;
 import  io.altar.pharmaFriend.repositories.MedicineRepository;
 import  io.altar.pharmaFriend.repositories.PharmacyRepository;
 
@@ -25,8 +24,7 @@ public class PharmacyBusiness {
 	PharmacyRepository pharmacyRepository1; 
 	@Inject
 	MedicineRepository medicineRepository1;
-	@Inject
-	StockInPharmacy stockInPharmacy1;
+	
 
 	
 	
@@ -38,7 +36,7 @@ public class PharmacyBusiness {
 		newpharmacy.setId(novoId);
 		
 		newpharmacy=pharmacyRepository1.saveEntity(newpharmacy);
-		newpharmacy=stockInPharmacy1.listStockInPharmacy(newpharmacy);
+		newpharmacy=listStockInPharmacy(newpharmacy);
 		pharmacyRepository1.saveEntity(newpharmacy);
 	}
 	
@@ -103,7 +101,18 @@ public class PharmacyBusiness {
 		@Transactional 
 		public void removePharmacy(long id) {
 			Pharmacy pharmacy =  pharmacyRepository1.consultEntityId(id);
-			pharmacyRepository1.remove(pharmacy.getPharmacyName());
+			
+			List<Medicine> stock= pharmacy.getListStock();
+			for(Medicine m: stock) {
+				m.getListPharmacyInMedicine().remove(pharmacy);
+				medicineRepository1.update(m);
+			}
+			
+			
+			pharmacy.setListStock(null);
+			pharmacyRepository1.update(pharmacy);
+			
+			pharmacyRepository1.delete(pharmacy);
 		}
 	
 	//it´s not working 
@@ -127,9 +136,9 @@ public class PharmacyBusiness {
 			
 			Pharmacy pharmacyToAdd = pharmacyList.next();
 			
-			NearLocation userlocation = new NearLocation(userLon,userLat);
+			NearLocationBusiness userlocation = new NearLocationBusiness(userLon,userLat);
 			
-			NearLocation pharmacy = new NearLocation(pharmacyToAdd.getLonLocation(),pharmacyToAdd.getLatLocation());
+			NearLocationBusiness pharmacy = new NearLocationBusiness(pharmacyToAdd.getLonLocation(),pharmacyToAdd.getLatLocation());
 			
 			double distance= pharmacy.distanceTo(userlocation);
 			
@@ -153,7 +162,7 @@ public class PharmacyBusiness {
 		Iterator<Pharmacy> newList = pharmacyRepository1.getAllEntity().iterator();
 		while (newList.hasNext()) {
 			Pharmacy pharmacy = newList.next();
-			stockInPharmacy1.listStockInPharmacy(pharmacy);
+			listStockInPharmacy(pharmacy);
 			}
 		
 	}
@@ -174,5 +183,30 @@ public class PharmacyBusiness {
 		
 	}
 	
+	//method to generate pharmacy stock 
+		@Transactional
+		public Pharmacy listStockInPharmacy(Pharmacy pharmacy){
+			Random rand = new Random();
+			int number = rand.nextInt(10) + 1;
+			
+		
+
+			List<Medicine> medicineInPharmacy = new ArrayList<Medicine>();
+
+			Iterator<Medicine> listMedicine = medicineRepository1.getAllEntity().iterator();
+
+			while (listMedicine.hasNext()) {
+				Medicine medicine1 = listMedicine.next();
+
+				if(medicine1.getId()%number==0) {
+					medicineInPharmacy.add(medicine1);
+					medicine1.getListPharmacyInMedicine().add(pharmacy);
+					
+				}
+			}
+			pharmacy.setListStock(medicineInPharmacy);	
+			return pharmacy;
+					
+		}
 	
 }

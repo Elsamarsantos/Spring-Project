@@ -1,23 +1,19 @@
-package  io.altar.pharmaFriend.models;
+package io.altar.pharmaFriend.business;
 
 
-
-public class NearLocation {
-
-	
-	
+public class NearLocationBusiness {
 	private double lon;
 	private double lat;
 	
 	
-	public NearLocation(double lon, double lat) {
+	public NearLocationBusiness(double lon, double lat) {
 		this.lon = lon;
 		this.lat = lat;
 		
 	}
 	
 	
-	public double distanceTo(NearLocation that) {
+	public double distanceTo(NearLocationBusiness that) {
         double STATUTE_MILES_PER_NAUTICAL_MILE = 1.15077945;
         double lat1 = Math.toRadians(this.lon);
         double lon1 = Math.toRadians(this.lat);
@@ -39,5 +35,4 @@ public class NearLocation {
     public String toString() {
         return " (" + lon + ", " + lat + ")";
     }
-    
 }
