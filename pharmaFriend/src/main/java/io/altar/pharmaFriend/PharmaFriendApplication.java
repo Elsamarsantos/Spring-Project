@@ -9,6 +9,7 @@ public class PharmaFriendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PharmaFriendApplication.class, args);
 	}
+	
 
 }
 

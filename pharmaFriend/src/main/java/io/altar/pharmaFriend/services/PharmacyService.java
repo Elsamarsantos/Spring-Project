@@ -23,7 +23,7 @@ import  io.altar.pharmaFriend.business.PharmacyBusiness;
 import  io.altar.pharmaFriend.models.Pharmacy;
 
 @Component
-@Path("api/pharmacies")
+@Path("pharmacies")
 public class PharmacyService {
 	@Inject
 	PharmacyBusiness pharmacyBusiness1;

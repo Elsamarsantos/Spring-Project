@@ -15,13 +15,14 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import  io.altar.pharmaFriend.Dtos.MedicineDto;
 import  io.altar.pharmaFriend.business.MedicineBusiness;
 import  io.altar.pharmaFriend.models.Medicine;
 
 @Component
-@Path("api/medicines")
+@Path("medicines")
 public class MedicineService {
 	
 	@Inject
