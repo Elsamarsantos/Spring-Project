@@ -102,6 +102,21 @@ public class MedicineService {
 		
 		return medicineBusiness1.getListMedicineByNameDose(name,dose);
 	}
+	
+	@GET
+	@Path("consultshort")
+	@Produces (MediaType.APPLICATION_JSON)
+	public List<MedicineDto> consultShortList(@QueryParam("page") Long page) {
+		return medicineBusiness1.shortList(page);
+	}
+	
+	@GET
+	@Path("numberrow")
+	@Produces (MediaType.APPLICATION_JSON)
+	public int consultNumberRows() {
+		return medicineBusiness1.getNumberRows();
+	}
+	
 }
 
 

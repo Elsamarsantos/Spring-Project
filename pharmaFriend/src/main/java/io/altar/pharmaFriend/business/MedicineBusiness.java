@@ -138,5 +138,27 @@ public class MedicineBusiness {
 		}
 		return listMedicineDto;
 	}
+	
+	//get short list of medicines
+	@Transactional
+	public List <MedicineDto> shortList(Long page){
 		
+		List <Medicine> listMedicine= medicineRepository1.getShortList(page);
+		List <MedicineDto> listMedicineDto= new ArrayList<MedicineDto>();
+		
+		for(Medicine medicine: listMedicine) {
+			listMedicineDto.add(new MedicineDto(medicine.getId(),medicine.getMedicineName(),medicine.getDose(),medicine.getVolumeUnit(),medicine.getPvp(),medicine.getReImbursementRate()));
+			
+		}
+		return listMedicineDto;
+	}
+	
+	
+	//get max row in the list of medicines
+	@Transactional
+	public int getNumberRows (){
+	
+		return  medicineRepository1.getNumberOfRows ();
+		
+	}
 }
