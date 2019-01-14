@@ -141,9 +141,9 @@ public class MedicineBusiness {
 	
 	//get short list of medicines
 	@Transactional
-	public List <MedicineDto> shortList(Long page){
+	public List <MedicineDto> shortList(int max, int offset){
 		
-		List <Medicine> listMedicine= medicineRepository1.getShortList(page);
+		List <Medicine> listMedicine= medicineRepository1.getShortList(max,offset);
 		List <MedicineDto> listMedicineDto= new ArrayList<MedicineDto>();
 		
 		for(Medicine medicine: listMedicine) {
@@ -156,9 +156,9 @@ public class MedicineBusiness {
 	
 	//get max row in the list of medicines
 	@Transactional
-	public int getNumberRows (){
+	public Long getNumberRows (){
 	
-		return  medicineRepository1.getNumberOfRows ();
+		return  medicineRepository1.getNumberOfRows();
 		
 	}
 }

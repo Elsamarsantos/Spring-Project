@@ -35,7 +35,9 @@ public class UserRequestBusiness {
 			Iterator <Medicine> listMedicineInPharmacy=pharmacy.getListStock().iterator();
 			
 			while(listMedicineInPharmacy.hasNext()) {
-			if(listMedicineInPharmacy.next().getMedicineName().equals(medicine.getMedicineName())) {
+				
+				
+			if(listMedicineInPharmacy.next().getId().equals(medicine.getId())) {
 				listToAdd.add(pharmacy);
 				
 			}	

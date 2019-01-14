@@ -11,7 +11,6 @@ import javax.persistence.*;
 				@NamedQuery(name=Medicine.QUERY_ALL, query="SELECT m From Medicine m"),
 				@NamedQuery(name=Medicine.QUERY_NAME_DOSE, query="SELECT m From Medicine m WHERE m.medicineName= :medicineName and m.dose= :dose"),
 				@NamedQuery(name=Medicine.QUERY_BIGGEST_M, query="SELECT MAX(m.id) FROM Medicine m"),
-				@NamedQuery(name=Medicine.QUERY_ROW_LIMIT, query="SELECT m FROM Medicine LIMIT 30 OFFSET page= :page"),
 				@NamedQuery(name=Medicine.QUERY_MAX_ROW, query="SELECT COUNT(*) FROM Medicine")
 })
 public class Medicine extends BaseEntity {
