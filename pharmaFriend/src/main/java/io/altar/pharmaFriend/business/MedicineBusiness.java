@@ -158,7 +158,7 @@ public class MedicineBusiness {
 	}
 	
 	@Transactional
-	public List getAllMedicineNames (String letter){
+	public List<String> getAllMedicineNames (String letter){
 	
 		return  medicineRepository1.getAllMedicineName(letter);
 		

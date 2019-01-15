@@ -40,8 +40,9 @@ public class UserRequestService {
 	}
 	
 	@GET
+	@Path("user")
 	@Produces (MediaType.APPLICATION_JSON)
-	public List<PharmacyDto> medicineRequest(@QueryParam("medicinename") String name,@QueryParam("dose") String dose,@QueryParam("lonlocation") double lon,@QueryParam("latlocation") double lat, @QueryParam("userdistance") double distance) {
+	public List<PharmacyDto> medicineRequest1(@QueryParam("medicinename") String name,@QueryParam("dose") String dose,@QueryParam("lonlocation") double lon,@QueryParam("latlocation") double lat, @QueryParam("userdistance") double distance) {
 		
 		
 		return UserRequestBusiness1.userRequest(name,dose,lon, lat, distance);

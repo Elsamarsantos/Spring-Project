@@ -75,7 +75,7 @@ public class MedicineRepository extends EntityRepository<Medicine>{
 		return  em.createNamedQuery(Medicine.QUERY_MAX_ROW,Long.class).getSingleResult();
 	}
 	
-	public List getAllMedicineName(String letter){
+	public List<String> getAllMedicineName(String letter){
 		
 		return em.createNamedQuery(Medicine.QUERY_MEDICINE_NAME,String.class).setParameter("letter", letter + "%").setMaxResults(20).getResultList();
 		
