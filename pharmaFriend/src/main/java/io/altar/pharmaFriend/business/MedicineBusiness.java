@@ -79,18 +79,6 @@ public class MedicineBusiness {
 	
 	}
 	
-	//consult all medicine on DB
-	@Transactional
-	public List<MedicineDto> consultAll() {
-		Iterator<Medicine> listMedicine = medicineRepository1.getAllEntity().iterator();
-		List <MedicineDto> listMedicineDto= new ArrayList<MedicineDto>();
-		
-		while (listMedicine.hasNext()) {
-			Medicine medicine = listMedicine.next();
-			listMedicineDto.add(new MedicineDto(medicine.getId(),medicine.getMedicineName(),medicine.getDose(),medicine.getVolumeUnit(),medicine.getPvp(),medicine.getReImbursementRate()));
-		}
-		return listMedicineDto;
-	}
 	
 	
 	
@@ -161,4 +149,12 @@ public class MedicineBusiness {
 		return  medicineRepository1.getNumberOfRows();
 		
 	}
+	
+	@Transactional
+	public List getAllMedicineNames (){
+	
+		return  medicineRepository1.getAllMedicineName();
+		
+	}
+	
 }

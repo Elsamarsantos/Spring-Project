@@ -63,9 +63,7 @@ public class MedicineRepository extends EntityRepository<Medicine>{
 		return biggestId;
 	}
 	
-//	public List<Medicine> getShortList(Long page){
-//		return em.createNamedQuery(Medicine.QUERY_ROW_LIMIT, Medicine.class).setParameter("page", page).getResultList();
-//	}
+
 	public List<Medicine> getShortList(int max, int offset){
 		return em.createNamedQuery(Medicine.QUERY_ALL, Medicine.class).setFirstResult(offset).setMaxResults(max).getResultList();
 	}
@@ -75,4 +73,12 @@ public class MedicineRepository extends EntityRepository<Medicine>{
 	public Long getNumberOfRows () {
 		return  em.createNamedQuery(Medicine.QUERY_MAX_ROW,Long.class).getSingleResult();
 	}
+	
+	public List getAllMedicineName(){
+		
+		return em.createNamedQuery(Medicine.QUERY_MEDICINE_NAME,String.class).getResultList();
+		
+	}
+	
+	
 }

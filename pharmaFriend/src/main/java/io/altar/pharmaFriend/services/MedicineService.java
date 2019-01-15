@@ -52,12 +52,15 @@ public class MedicineService {
 		return medicineBusiness1.consultMedicine(id);
 	}
 	
+	
 	@GET
-	@Path("consultall")
+	@Path("consultallname")
 	@Produces (MediaType.APPLICATION_JSON)
-	public List<MedicineDto> consultAll() {
-		return medicineBusiness1.consultAll();
+	public List consultAllMedicineName() {
+		
+		return medicineBusiness1.getAllMedicineNames();
 	}
+	
 	
 	
 	@POST

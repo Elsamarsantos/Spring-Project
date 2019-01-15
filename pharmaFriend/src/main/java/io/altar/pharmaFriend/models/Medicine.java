@@ -11,7 +11,9 @@ import javax.persistence.*;
 				@NamedQuery(name=Medicine.QUERY_ALL, query="SELECT m From Medicine m"),
 				@NamedQuery(name=Medicine.QUERY_NAME_DOSE, query="SELECT m From Medicine m WHERE m.medicineName= :medicineName and m.dose= :dose"),
 				@NamedQuery(name=Medicine.QUERY_BIGGEST_M, query="SELECT MAX(m.id) FROM Medicine m"),
-				@NamedQuery(name=Medicine.QUERY_MAX_ROW, query="SELECT COUNT(*) FROM Medicine")
+				@NamedQuery(name=Medicine.QUERY_MAX_ROW, query="SELECT COUNT(*) FROM Medicine"),
+				@NamedQuery(name=Medicine.QUERY_MEDICINE_NAME, query="SELECT medicineName From Medicine m")
+				
 })
 public class Medicine extends BaseEntity {
 
@@ -24,7 +26,8 @@ public class Medicine extends BaseEntity {
 	public static final String QUERY_BIGGEST_M= "getTheBiggestNumberOfId";
 	public static final String QUERY_ROW_LIMIT= "getLimitedList";
 	public static final String QUERY_MAX_ROW= "getMaxRow";
-	public static final String QUERY_ALL = "findAllMedicines";		
+	public static final String QUERY_ALL = "findAllMedicines";	
+	public static final String QUERY_MEDICINE_NAME = "getAllMedicineNames";
 	
 	@Column(name="`medicineName`")
 	private String medicineName;
