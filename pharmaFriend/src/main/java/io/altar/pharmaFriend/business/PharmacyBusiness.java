@@ -152,6 +152,21 @@ public class PharmacyBusiness {
 		return nearestList;
 	}
 	
+	@Transactional
+	public List<PharmacyDto> transformInToDto(List<Pharmacy> newList){
+		Iterator<Pharmacy> newlist1 = newList.iterator();
+		ArrayList<PharmacyDto> listPharmacyDto = new ArrayList(); 
+		while (newlist1.hasNext()) {
+			Pharmacy pharmacy = newlist1.next();
+			//List<MedicineDto> listDto = getStockListPharmacy (pharmacy.getId());
+			
+			listPharmacyDto.add(new PharmacyDto(pharmacy.getId(),pharmacy.getPharmacyName(),pharmacy.getaddress(),pharmacy.getLonLocation(), pharmacy.getLatLocation()));
+		}
+		return listPharmacyDto;
+	
+		
+	}
+	
 	
 	//this method is to create stock in all pharmacies
 	@Transactional 
