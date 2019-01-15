@@ -17,7 +17,8 @@ import javax.persistence.Table;
 @NamedQueries({@NamedQuery(name=Pharmacy.QUERYLOCATION, query="SELECT p From Pharmacy p WHERE p.lonLocation= :lonLocation and p.latLocation= :latLocation"),
 				@NamedQuery(name=Pharmacy.QUERY_ALL, query="SELECT p From Pharmacy p"), 
 				@NamedQuery(name=Pharmacy.QUERYNAME, query="SELECT p From Pharmacy p WHERE p.pharmacyName= :pharmacyName"),
-				@NamedQuery(name=Pharmacy.QUERY_BIGGEST_F, query="SELECT MAX(p.id) FROM Pharmacy p")
+				@NamedQuery(name=Pharmacy.QUERY_BIGGEST_F, query="SELECT MAX(p.id) FROM Pharmacy p"),
+				@NamedQuery(name=Pharmacy.QUERY_TEST, query="SELECT distinct p From Pharmacy p join p.listStock m WHERE m.medicineName= :name AND m.dose= :dose")
 })
 
 public class Pharmacy extends BaseEntity{
@@ -29,6 +30,7 @@ public class Pharmacy extends BaseEntity{
 	public static final String QUERYLOCATION = "findByLocation";
 	public static final String QUERY_ALL = "findAllPharmacy";	
 	public static final String QUERY_BIGGEST_F = "getBiggestId";
+	public static final String QUERY_TEST = "getteest";
 	
 	@Column(name="pharmacyName")
 	private String pharmacyName;

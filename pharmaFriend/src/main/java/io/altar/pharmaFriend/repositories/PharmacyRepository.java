@@ -2,6 +2,8 @@ package  io.altar.pharmaFriend.repositories;
 
 
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import  io.altar.pharmaFriend.models.Pharmacy;
@@ -52,5 +54,8 @@ public class PharmacyRepository extends EntityRepository<Pharmacy> {
 		
 		return biggestId;
 	}
-	
+	public List<Pharmacy> getPharmacytest(String name, String dose) {
+		return em.createNamedQuery(Pharmacy.QUERY_TEST, Pharmacy.class).setParameter("name", name).setParameter("dose", dose).getResultList();
+		
+	}
 }

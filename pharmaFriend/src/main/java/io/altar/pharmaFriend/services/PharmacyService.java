@@ -118,6 +118,12 @@ public class PharmacyService {
 		return pharmacyBusiness1.getStockListPharmacy(id);
 	}
 	
-	
+	@GET
+	@Path("consulttest")
+	@Produces (MediaType.APPLICATION_JSON)
+	public List<PharmacyDto> consulttest(@QueryParam("medicinename") String name,@QueryParam("dose") String dose) {
+		
+		return pharmacyBusiness1.test(name, dose);
+	}
 	
 }

@@ -223,6 +223,17 @@ public class PharmacyBusiness {
 			return pharmacy;
 					
 		}
+		
+		
+		@Transactional
+		public List<PharmacyDto> test(String name, String dose){
+			
+			
+			return transformInToDto(pharmacyRepository1.getPharmacytest(name, dose));
+		}
+		
+		
+		
 	
 	
 }

@@ -12,7 +12,8 @@ import javax.persistence.*;
 				@NamedQuery(name=Medicine.QUERY_NAME_DOSE, query="SELECT m From Medicine m WHERE m.medicineName= :medicineName and m.dose= :dose"),
 				@NamedQuery(name=Medicine.QUERY_BIGGEST_M, query="SELECT MAX(m.id) FROM Medicine m"),
 				@NamedQuery(name=Medicine.QUERY_MAX_ROW, query="SELECT COUNT(*) FROM Medicine"),
-				@NamedQuery(name=Medicine.QUERY_MEDICINE_NAME, query="SELECT medicineName From Medicine m")
+				@NamedQuery(name=Medicine.QUERY_MEDICINE_NAME, query="SELECT medicineName From Medicine m WHERE medicineName LIKE  :letter"),
+		//		@NamedQuery(name=Medicine.QUERY_TEST, query=
 				
 })
 public class Medicine extends BaseEntity {
@@ -28,6 +29,7 @@ public class Medicine extends BaseEntity {
 	public static final String QUERY_MAX_ROW= "getMaxRow";
 	public static final String QUERY_ALL = "findAllMedicines";	
 	public static final String QUERY_MEDICINE_NAME = "getAllMedicineNames";
+	public static final String QUERY_TEST = "gettest";
 	
 	@Column(name="`medicineName`")
 	private String medicineName;

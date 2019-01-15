@@ -49,6 +49,13 @@ public class MedicineBusiness {
 		return medicine;
 	}
 	
+	@Transactional 
+	public List<Medicine> consultMedicineWithoutDto(String name,String dose) {
+		
+		List<Medicine> medicine = medicineRepository1.getListMedicineByNameDose(name,dose);
+		return medicine;
+	}
+	
 	//consult medicine by name
 		public Medicine consultMedicineWithoutDto(String name) {
 			
@@ -151,9 +158,9 @@ public class MedicineBusiness {
 	}
 	
 	@Transactional
-	public List getAllMedicineNames (){
+	public List getAllMedicineNames (String letter){
 	
-		return  medicineRepository1.getAllMedicineName();
+		return  medicineRepository1.getAllMedicineName(letter);
 		
 	}
 	

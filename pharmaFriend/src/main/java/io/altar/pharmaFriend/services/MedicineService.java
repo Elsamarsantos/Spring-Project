@@ -56,9 +56,9 @@ public class MedicineService {
 	@GET
 	@Path("consultallname")
 	@Produces (MediaType.APPLICATION_JSON)
-	public List consultAllMedicineName() {
+	public List consultAllMedicineName(@QueryParam("letter") String letter) {
 		
-		return medicineBusiness1.getAllMedicineNames();
+		return medicineBusiness1.getAllMedicineNames(letter);
 	}
 	
 	

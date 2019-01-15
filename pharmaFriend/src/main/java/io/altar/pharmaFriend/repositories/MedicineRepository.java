@@ -51,6 +51,7 @@ public class MedicineRepository extends EntityRepository<Medicine>{
 	}
 	
 
+	
 	public long getBiggestId() {
 		
 		long biggestId = 0;
@@ -74,9 +75,9 @@ public class MedicineRepository extends EntityRepository<Medicine>{
 		return  em.createNamedQuery(Medicine.QUERY_MAX_ROW,Long.class).getSingleResult();
 	}
 	
-	public List getAllMedicineName(){
+	public List getAllMedicineName(String letter){
 		
-		return em.createNamedQuery(Medicine.QUERY_MEDICINE_NAME,String.class).getResultList();
+		return em.createNamedQuery(Medicine.QUERY_MEDICINE_NAME,String.class).setParameter("letter", letter + "%").setMaxResults(20).getResultList();
 		
 	}
 	
