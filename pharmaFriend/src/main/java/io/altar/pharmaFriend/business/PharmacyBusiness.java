@@ -115,7 +115,7 @@ public class PharmacyBusiness {
 			pharmacyRepository1.delete(pharmacy);
 		}
 	
-	//it´s not working 
+	//method to edit pharmacy
 	@Transactional 
 	public void updatePharmacy(Pharmacy pharmacy) {
 		
@@ -152,6 +152,7 @@ public class PharmacyBusiness {
 		return nearestList;
 	}
 	
+	// method to transform pharmacy in a phamracy dto
 	@Transactional
 	public List<PharmacyDto> transformInToDto(List<Pharmacy> newList){
 		Iterator<Pharmacy> newlist1 = newList.iterator();
@@ -223,7 +224,8 @@ public class PharmacyBusiness {
 			return pharmacy;
 					
 		}
-		
+	
+		//get list of pharmacy with a medicine
 		
 		@Transactional
 		public List<PharmacyDto> test(String name, String dose){

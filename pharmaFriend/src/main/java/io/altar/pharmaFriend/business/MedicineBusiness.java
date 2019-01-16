@@ -157,6 +157,7 @@ public class MedicineBusiness {
 		
 	}
 	
+	//get a list of medicine name
 	@Transactional
 	public List<String> getAllMedicineNames (String letter){
 	
