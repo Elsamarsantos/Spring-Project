@@ -2,18 +2,19 @@ package  io.altar.pharmaFriend.models;
 
 import java.util.List;
 
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="Medicine")
 @NamedQueries({@NamedQuery(name=Medicine.QUERYNAME, query="SELECT m From Medicine m WHERE m.medicineName= :medicineName"),
 				@NamedQuery(name=Medicine.QUERY_NAME_DOSE_UNIT, query="SELECT m From Medicine m WHERE m.medicineName= :medicineName and m.dose= :dose and m.volumeUnit= :volumeUnit"),
-				@NamedQuery(name=Medicine.QUERY_ALL, query="SELECT m From Medicine m"),
+				@NamedQuery(name=Medicine.QUERY_ALL, query="SELECT new io.altar.pharmaFriend.Dtos.MedicineDto(m.id, m.medicineName, m.dose, m.volumeUnit, m.pvp, m.reImbursementRate ) FROM Medicine m "),
 				@NamedQuery(name=Medicine.QUERY_NAME_DOSE, query="SELECT m From Medicine m WHERE m.medicineName= :medicineName and m.dose= :dose"),
 				@NamedQuery(name=Medicine.QUERY_BIGGEST_M, query="SELECT MAX(m.id) FROM Medicine m"),
 				@NamedQuery(name=Medicine.QUERY_MAX_ROW, query="SELECT COUNT(*) FROM Medicine"),
-				@NamedQuery(name=Medicine.QUERY_MEDICINE_NAME, query="SELECT medicineName From Medicine m WHERE medicineName LIKE  :letter"),
-		//		@NamedQuery(name=Medicine.QUERY_TEST, query=
+				@NamedQuery(name=Medicine.QUERY_MEDICINE_NAME, query="SELECT new io.altar.pharmaFriend.Dtos.MedicineDto(m.id, m.medicineName, m.dose, m.volumeUnit, m.pvp, m.reImbursementRate ) From Medicine m WHERE medicineName LIKE  :letter"),
+		
 				
 })
 public class Medicine extends BaseEntity {

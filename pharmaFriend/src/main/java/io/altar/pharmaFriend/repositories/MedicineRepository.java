@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import  io.altar.pharmaFriend.models.Medicine;
+import io.altar.pharmaFriend.Dtos.MedicineDto;
+
 
 @Repository
 public class MedicineRepository extends EntityRepository<Medicine>{
@@ -56,7 +58,7 @@ public class MedicineRepository extends EntityRepository<Medicine>{
 		
 		long biggestId = 0;
 		
-		if (em.createNamedQuery(Medicine.QUERY_ALL, Medicine.class).getResultList().size() > 0) {
+		if (em.createNamedQuery(Medicine.QUERY_MAX_ROW,Long.class).getSingleResult() > 0) {
 			biggestId =(long) em.createNamedQuery(Medicine.QUERY_BIGGEST_M).getSingleResult();
 		}
 		;
@@ -65,8 +67,9 @@ public class MedicineRepository extends EntityRepository<Medicine>{
 	}
 	
 
-	public List<Medicine> getShortList(int max, int offset){
-		return em.createNamedQuery(Medicine.QUERY_ALL, Medicine.class).setFirstResult(offset).setMaxResults(max).getResultList();
+	public List<MedicineDto> getShortList(int max, int offset){
+
+		return em.createNamedQuery(Medicine.QUERY_ALL, MedicineDto.class).setFirstResult(offset).setMaxResults(max).getResultList();
 	}
 	
 	
@@ -75,9 +78,9 @@ public class MedicineRepository extends EntityRepository<Medicine>{
 		return  em.createNamedQuery(Medicine.QUERY_MAX_ROW,Long.class).getSingleResult();
 	}
 	
-	public List<String> getAllMedicineName(String letter){
+	public List<MedicineDto> getAllMedicineName(String letter){
 		
-		return em.createNamedQuery(Medicine.QUERY_MEDICINE_NAME,String.class).setParameter("letter", letter + "%").setMaxResults(20).getResultList();
+		return em.createNamedQuery(Medicine.QUERY_MEDICINE_NAME,MedicineDto.class).setParameter("letter", letter + "%").setMaxResults(20).getResultList();
 		
 	}
 	

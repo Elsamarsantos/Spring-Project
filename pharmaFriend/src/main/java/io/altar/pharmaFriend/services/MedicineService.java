@@ -56,7 +56,7 @@ public class MedicineService {
 	@GET
 	@Path("consultallname")
 	@Produces (MediaType.APPLICATION_JSON)
-	public List <String> consultAllMedicineName(@QueryParam("letter") String letter) {
+	public List <MedicineDto> consultAllMedicineName(@QueryParam("letter") String letter) {
 		
 		return medicineBusiness1.getAllMedicineNames(letter);
 	}
@@ -81,6 +81,7 @@ public class MedicineService {
 		medicineBusiness1.updateMedicine(medicine);
 	}
 
+	
 	
 	
 	@DELETE

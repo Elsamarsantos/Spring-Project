@@ -138,14 +138,14 @@ public class MedicineBusiness {
 	@Transactional
 	public List <MedicineDto> shortList(int max, int offset){
 		
-		List <Medicine> listMedicine= medicineRepository1.getShortList(max,offset);
+		List <MedicineDto> listMedicine= medicineRepository1.getShortList(max,offset);
 		List <MedicineDto> listMedicineDto= new ArrayList<MedicineDto>();
-		
-		for(Medicine medicine: listMedicine) {
-			listMedicineDto.add(new MedicineDto(medicine.getId(),medicine.getMedicineName(),medicine.getDose(),medicine.getVolumeUnit(),medicine.getPvp(),medicine.getReImbursementRate()));
-			
-		}
-		return listMedicineDto;
+
+//		for(Medicine medicine: listMedicine) {
+//			System.out.println("pedido");
+//			listMedicineDto.add(new MedicineDto(medicine.getId(),medicine.getMedicineName(),medicine.getDose(),medicine.getVolumeUnit(),medicine.getPvp(),medicine.getReImbursementRate()));		
+//		}
+		return listMedicine;
 	}
 	
 	
@@ -157,9 +157,10 @@ public class MedicineBusiness {
 		
 	}
 	
+	
 	//get a list of medicine name
 	@Transactional
-	public List<String> getAllMedicineNames (String letter){
+	public List<MedicineDto> getAllMedicineNames (String letter){
 	
 		return  medicineRepository1.getAllMedicineName(letter);
 		
